@@ -15,7 +15,7 @@ table:
     - unit price: 20
 - item d
     - unit price: 15
-    
+
 Our checkout accepts items in any order, so that if we scan a B, an A, and another B, we’ll recognize the two B’s and price them at 45 (for a total price so far of 95). Because the pricing changes frequently, we need to be able to pass in a set of pricing rules each time we start handling a checkout transaction.
 
 The solution should allow for items to input within a simple user interface, and allow for a final total to be calculated and for a running total after each item is added to the basket
@@ -25,10 +25,11 @@ The solution should allow for items to input within a simple user interface, and
 > commit changes frequently. It is more important to see the progress than the finished product.
 
 ## Whats needed:
-1. Ability to add items to a basket
-1. Basket should display the total cost
-    1. When the basket changes it should calculate the new cost.
-    1. Items with mulit-pricing should  
+1. ~~Display a list of products to add to the basket~~
+1. ~~Display a list of items in the users basket~~
+1. ~~Ability to add products to a basket~~
+1. Display the total price of the basket
+1. Items with mulit-pricing should use the best price for the quanitity
 
 ## If we have time:
 - Beutyfiy the UI
