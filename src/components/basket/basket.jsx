@@ -24,7 +24,7 @@ function BasketItem({ item }) {
 
     return (
         <div>
-            <p>{item.name} - {item.quantity}
+            <p>{item.name} - {item.quantity} - {item.totalPrice}
                 <button onClick={() => {
                     removeItem(item.id);
                 }}>

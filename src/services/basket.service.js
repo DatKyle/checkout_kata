@@ -8,11 +8,24 @@ function getItemDetails(item) {
         name: product.name,
         quantity: item.quantity,
         unitPrice: product.unitPrice,
+        totalPrice: calculatePrice(product, item.quantity),
         specialPrice: product.specialPrice ? {
             quantity: product.specialPrice.unitPrice,
             unitPrice: product.specialPrice.unitPrice
         } : null
     }
+}
+
+function calculatePrice(product, quantity){
+    let totalPrice = 0;
+    
+    if(product.specialPrice){
+        totalPrice = Math.floor(quantity / product.specialPrice.quantity) * product.specialPrice.unitPrice
+        totalPrice += (quantity % product.specialPrice.quantity) * product.unitPrice
+        return totalPrice;
+    }
+
+    return quantity * product.unitPrice;
 }
 
 function setLocalForge(items) {
