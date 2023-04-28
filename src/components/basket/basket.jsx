@@ -1,12 +1,19 @@
+import { useEffect, useState } from "react";
 import { useBasket } from "./basket.context";
+import { getDetails as getBasketDetails } from "../../services/basket.service";
 
 export function Basket() {
     const { basket } = useBasket();
+    const [ basketDetails, setBasketDetails ] = useState([]);
+
+    useEffect(() => {
+        getBasketDetails(basket).then((details) => setBasketDetails(details))
+    }, [basket]);
 
     return (
         <>
-            {basket.length ?
-                basket.map(item => <BasketItem key={item.id} item={item} />)
+            {basketDetails.length ?
+                basketDetails.map(item => <BasketItem key={item.id} item={item} />)
                 : null}
         </>
     );
@@ -17,7 +24,7 @@ function BasketItem({ item }) {
 
     return (
         <div>
-            <p>{item.id} - {item.quantity}
+            <p>{item.name} - {item.quantity}
                 <button onClick={() => {
                     removeItem(item.id);
                 }}>

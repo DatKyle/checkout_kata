@@ -40,3 +40,7 @@ const products = [
 export function getAll() {
     return products;
 }
+
+export function get(id) {
+    return products.find(item => item.id === id);
+}
