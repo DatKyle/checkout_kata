@@ -25,24 +25,25 @@ export function Product({ product }) {
                 {product.specialPrice ? ` or ${product.specialPrice.quantity} @ ${product.specialPrice.unitPrice}` : null}
             </p>
             <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => { setQuantity(event.target.value) }} />
-            <ProductButtons id={product.id} quantity={parseInt(quantity)} />
+            <ProductButtons id={product.id} quantity={parseInt(quantity)} minQuantity={minQuantity} setQuantity={setQuantity} />
         </div>
     );
 }
 
-function ProductButtons({ id, quantity }) {
+function ProductButtons({ id, quantity, minQuantity, setQuantity }) {
     const { basket, addItem, updateItem, removeItem } = useBasket();
     if (basket.find(item => item.id === id))
         return (
             <>
                 <button onClick={() => {
-                    updateItem({ id, quantity })
+                    updateItem({ id, quantity });
                 }}>
                     Update
                 </button>
 
                 <button onClick={() => {
-                    removeItem(id)
+                    removeItem(id);
+                    setQuantity(minQuantity);
                 }}>
                     Remove
                 </button>
@@ -51,7 +52,7 @@ function ProductButtons({ id, quantity }) {
 
     return (
         <button onClick={() => {
-            addItem({ id, quantity })
+            addItem({ id, quantity });
         }}> Add </button>
     );
 }
