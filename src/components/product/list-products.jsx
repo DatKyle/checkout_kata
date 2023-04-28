@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
+
 import { getAll } from '../../services/products.service';
+
+
+import { Product } from './produst';
 
 export function ProductList() {
     const [products, setProducts] = useState([]);
@@ -12,17 +16,9 @@ export function ProductList() {
 
     return (
         <>
-            {products && products.length > 0 ? products.map(Product) : null}
+            {products && products.length > 0 ?
+                products.map((product) => <Product key={product.id} product={product} />)
+                : null}
         </>
-    );
-}
-
-function Product(product, index) {
-    return (
-        <div key={index} >
-            <p>{product.name} @ {product.unitPrice} 
-                {product.specialPrice ? ` or ${product.specialPrice.quantity} @ ${product.specialPrice.unitPrice}` : null}
-            </p>
-        </div>
     );
 }

@@ -14,9 +14,11 @@ export function BasketContextProvider({ children }) {
     const [basket, setBasket] = useState([]);
 
     function addItem(item) {
-        setBasket(produce((draft) => {
-            draft.push(item);
-        }));
+        let foundItem = basket.find((product) => product.id === item.id);
+        if (!foundItem)
+            setBasket(produce((draft) => {
+                draft.push({ id: item.id, quantity: item.quantity });
+            }));
     };
 
     return (
