@@ -14,7 +14,7 @@ export function BasketContextProvider({ children }) {
     const [basket, setBasket] = useState([]);
 
     function addItem(item) {
-        setBasket(produce((draft = []) => {
+        setBasket(produce((draft) => {
             draft.push(item);
         }));
     };
