@@ -3,7 +3,9 @@ import { produce } from "immer";
 
 const BasketContext = createContext({
     basket: [],
-    addItem: (item) => { }
+    addItem: (item) => { },
+    updateItem: (item) => { },
+    removeItem: (id) => { }
 });
 
 export function useBasket() {
@@ -21,8 +23,19 @@ export function BasketContextProvider({ children }) {
             }));
     };
 
+    function updateItem(item) {
+        setBasket(produce((draft) => {
+            let foundItem = draft.find((product) => product.id === item.id);
+            foundItem.quantity = item.quantity
+        }));
+    };
+
+    function removeItem(id) {
+        setBasket(basket.filter(item => item.id !== id));
+    };
+
     return (
-        <BasketContext.Provider value={{ basket, addItem }}>
+        <BasketContext.Provider value={{ basket, addItem, updateItem, removeItem}}>
             {children}
         </BasketContext.Provider>
     );

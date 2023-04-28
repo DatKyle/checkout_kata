@@ -15,8 +15,6 @@ function getQuantityLimits(product) {
 }
 
 export function Product({ product }) {
-    const { basket, addItem } = useBasket();
-
     const { minQuantity, maxQuantity } = getQuantityLimits(product);
 
     const [quantity, setQuantity] = useState(minQuantity);
@@ -27,9 +25,33 @@ export function Product({ product }) {
                 {product.specialPrice ? ` or ${product.specialPrice.quantity} @ ${product.specialPrice.unitPrice}` : null}
             </p>
             <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => { setQuantity(event.target.value) }} />
-            <button onClick={() => {
-                addItem({ id: product.id, quantity })
-            }}> Add To Basket </button>
+            <ProductButtons id={product.id} quantity={parseInt(quantity)} />
         </div>
+    );
+}
+
+function ProductButtons({ id, quantity }) {
+    const { basket, addItem, updateItem, removeItem } = useBasket();
+    if (basket.find(item => item.id === id))
+        return (
+            <>
+                <button onClick={() => {
+                    updateItem({ id, quantity })
+                }}>
+                    Update
+                </button>
+
+                <button onClick={() => {
+                    removeItem(id)
+                }}>
+                    Remove
+                </button>
+            </>
+        );
+
+    return (
+        <button onClick={() => {
+            addItem({ id, quantity })
+        }}> Add </button>
     );
 }
