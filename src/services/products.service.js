@@ -4,7 +4,7 @@ const products = [
         unitPrice: 50,
         specialPrice: {
             quantity: 3,
-            UnitPrice: 130
+            unitPrice: 130
         }
     },
     {
@@ -12,7 +12,7 @@ const products = [
         unitPrice: 30,
         specialPrice: {
             quantity: 2,
-            UnitPrice: 45
+            unitPrice: 45
         }
     },
     {
@@ -25,6 +25,6 @@ const products = [
     }
 ]
 
-export default function getAll(){
+export function getAll(){
     return products;
 }
