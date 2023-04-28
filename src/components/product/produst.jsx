@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useBasket } from '../basket/basket.context';
 
 function getQuantityLimits(product) {
@@ -15,9 +15,20 @@ function getQuantityLimits(product) {
 }
 
 export function Product({ product }) {
+    const { basket } = useBasket();
+
     const { minQuantity, maxQuantity } = getQuantityLimits(product);
 
     const [quantity, setQuantity] = useState(minQuantity);
+
+    const item = basket.find(item => item.id === product.id);
+
+    useEffect(() => {
+        if (item)
+            setQuantity(item.quantity);
+        else
+            setQuantity(minQuantity);
+    }, [item, minQuantity])
 
     return (
         <div>
@@ -25,12 +36,12 @@ export function Product({ product }) {
                 {product.specialPrice ? ` or ${product.specialPrice.quantity} @ ${product.specialPrice.unitPrice}` : null}
             </p>
             <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => { setQuantity(event.target.value) }} />
-            <ProductButtons id={product.id} quantity={parseInt(quantity)} minQuantity={minQuantity} setQuantity={setQuantity} />
+            <ProductButtons id={product.id} quantity={parseInt(quantity)} />
         </div>
     );
 }
 
-function ProductButtons({ id, quantity, minQuantity, setQuantity }) {
+function ProductButtons({ id, quantity }) {
     const { basket, addItem, updateItem, removeItem } = useBasket();
     if (basket.find(item => item.id === id))
         return (
@@ -43,7 +54,6 @@ function ProductButtons({ id, quantity, minQuantity, setQuantity }) {
 
                 <button onClick={() => {
                     removeItem(id);
-                    setQuantity(minQuantity);
                 }}>
                     Remove
                 </button>
