@@ -16,9 +16,10 @@ function getQuantityLimits(product) {
 
 export function Product({ product }) {
     const { basket, addItem } = useBasket();
-    const [quantity, setQuantity] = useState(1);
 
     const { minQuantity, maxQuantity } = getQuantityLimits(product);
+
+    const [quantity, setQuantity] = useState(minQuantity);
 
     return (
         <div>
