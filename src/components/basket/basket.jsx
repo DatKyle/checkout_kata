@@ -4,18 +4,24 @@ import { getDetails as getBasketDetails } from "../../services/basket.service";
 
 export function Basket() {
     const { basket } = useBasket();
-    const [ basketDetails, setBasketDetails ] = useState([]);
+    const [basketDetails, setBasketDetails] = useState([]);
 
     useEffect(() => {
         getBasketDetails(basket).then((details) => setBasketDetails(details))
     }, [basket]);
 
+    if (basketDetails.length < 1)
+        return null;
+
     return (
-        <>
-            {basketDetails.length ?
-                basketDetails.map(item => <BasketItem key={item.id} item={item} />)
-                : null}
-        </>
+        <div>
+            <div>
+                {basketDetails.map(item => <BasketItem key={item.id} item={item} />)}
+            </div>
+            <div>
+                <BasketTotal items={basketDetails} />
+            </div>
+        </div>
     );
 }
 
@@ -32,5 +38,16 @@ function BasketItem({ item }) {
                 </button>
             </p>
         </div>
+    );
+}
+
+function BasketTotal({ items }) {
+    let totalPrice = 0;
+    items.forEach(item => {
+        totalPrice += item.totalPrice;
+    });
+
+    return (
+        <p>Total: {totalPrice}</p>
     );
 }
