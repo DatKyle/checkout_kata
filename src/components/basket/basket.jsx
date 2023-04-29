@@ -28,9 +28,11 @@ export function Basket() {
 function BasketItem({ item }) {
     const { removeItem } = useBasket();
 
+    const saving = item.totalStandardPrice - item.totalPrice;
+
     return (
         <div>
-            <p>{item.name} - {item.quantity} - {item.totalPrice}
+            <p>{item.name} - {item.quantity} - {item.totalPrice} {saving !== 0 ? `(${saving} saved)` : null}
                 <button onClick={() => {
                     removeItem(item.id);
                 }}>
@@ -43,11 +45,16 @@ function BasketItem({ item }) {
 
 function BasketTotal({ items }) {
     let totalPrice = 0;
+    let totalStandardPrice = 0;
+    
     items.forEach(item => {
         totalPrice += item.totalPrice;
+        totalStandardPrice += item.totalStandardPrice;
     });
 
+    const saving = totalStandardPrice - totalPrice;
+
     return (
-        <p>Total: {totalPrice}</p>
+        <p>Total: {totalPrice} {saving !== 0 ? `(${saving} saved)` : null}</p>
     );
 }

@@ -9,6 +9,7 @@ function getItemDetails(item) {
         quantity: item.quantity,
         unitPrice: product.unitPrice,
         totalPrice: calculatePrice(product, item.quantity),
+        totalStandardPrice: calculateStandardPrice(product.unitPrice, item.quantity),
         specialPrice: product.specialPrice ? {
             quantity: product.specialPrice.unitPrice,
             unitPrice: product.specialPrice.unitPrice
@@ -26,6 +27,10 @@ function calculatePrice(product, quantity){
     }
 
     return quantity * product.unitPrice;
+}
+
+function calculateStandardPrice(unitPrice, quantity){
+    return quantity * unitPrice;
 }
 
 function setLocalForge(items) {
