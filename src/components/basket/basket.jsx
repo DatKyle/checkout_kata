@@ -28,7 +28,7 @@ export function Basket() {
 function BasketItem({ item }) {
     const { removeItem } = useBasket();
 
-    const saving = item.totalStandardPrice - item.totalPrice;
+    const saving = item.totalBasicPrice - item.totalPrice;
 
     return (
         <div>
@@ -45,14 +45,14 @@ function BasketItem({ item }) {
 
 function BasketTotal({ items }) {
     let totalPrice = 0;
-    let totalStandardPrice = 0;
-    
+    let totalBasicPrice = 0;
+
     items.forEach(item => {
         totalPrice += item.totalPrice;
-        totalStandardPrice += item.totalStandardPrice;
+        totalBasicPrice += item.totalBasicPrice;
     });
 
-    const saving = totalStandardPrice - totalPrice;
+    const saving = totalBasicPrice - totalPrice;
 
     return (
         <p>Total: {totalPrice} {saving !== 0 ? `(${saving} saved)` : null}</p>

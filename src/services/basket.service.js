@@ -9,7 +9,7 @@ function getItemDetails(item) {
         quantity: item.quantity,
         unitPrice: product.unitPrice,
         totalPrice: calculatePrice(product, item.quantity),
-        totalStandardPrice: calculateStandardPrice(product.unitPrice, item.quantity),
+        totalBasicPrice: calculateStandardPrice(product.unitPrice, item.quantity),
         specialPrice: product.specialPrice ? {
             quantity: product.specialPrice.unitPrice,
             unitPrice: product.specialPrice.unitPrice
