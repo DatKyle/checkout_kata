@@ -48,6 +48,13 @@ async function getLocalForge() {
     return products ? products : defaultProducts;
 }
 
+export async function add(product) {
+    const products = await getLocalForge();
+    products.push(product);
+    setLocalForge(products);
+    return product;
+}
+
 export async function getAll() {
     return await getLocalForge();
 }

@@ -1,12 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import {
-    getAll
-} from "../../services/products.service";
+import { getAll, add } from "../../services/products.service";
+import { produce } from "immer";
 
 const ProductContext = createContext({
     products: [],
-    addProduct: (item) => { }
+    addProduct: (product) => { }
 });
 
 export function useProduct() {
@@ -21,7 +20,11 @@ export function ProductContextProvider({ children }) {
     }, []);
 
     function addProduct(product) {
-
+        product.id = products.length + 1;
+        add(product);
+        setProducts(produce(draft => {
+            draft.push(product);
+        }))
     };
 
     return (
