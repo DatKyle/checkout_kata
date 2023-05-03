@@ -6,12 +6,12 @@ import "./edit-product.css"
 export function EditProduct({ product }) {
     const { addProduct, updateProduct, removeProduct } = useProduct();
 
-    const [name, setName] = useState(product ? product.name : "");
-    const [unitPrice, setUnitPrice] = useState(product ? product.unitPrice : "");
-    const [specialQuantity, setSpecialQuantity] = useState(product && product.specialPrice ? product.specialPrice.quantity : "");
-    const [specialUnitPrice, setSpecialUnitPrice] = useState(product && product.specialPrice ? product.specialPrice.unitPrice : "");
-    const [minQuantity, setMinQuantity] = useState(product && product.orderSize ? product.orderSize.min : 1);
-    const [maxQuantity, setMaxQuantity] = useState(product && product.orderSize ? product.orderSize.max : "");
+    const [name, setName] = useState(product ? product.name || "" : "");
+    const [unitPrice, setUnitPrice] = useState(product ? product.unitPrice || "" : "");
+    const [specialQuantity, setSpecialQuantity] = useState(product && product.specialPrice ? product.specialPrice.quantity || "" : "");
+    const [specialUnitPrice, setSpecialUnitPrice] = useState(product && product.specialPrice ? product.specialPrice.unitPrice || "" : "");
+    const [minQuantity, setMinQuantity] = useState(product && product.orderSize ? product.orderSize.min || 1 : 1);
+    const [maxQuantity, setMaxQuantity] = useState(product && product.orderSize ? product.orderSize.max || "" : "");
     return (
         <div className="row">
             <input name='name' type='text' value={name} onChange={e => setName(e.target.value)} />
@@ -41,6 +41,13 @@ export function EditProduct({ product }) {
                         }
 
                     addProduct(newProduct);
+
+                    setName("");
+                    setUnitPrice("");
+                    setSpecialQuantity("");
+                    setSpecialUnitPrice("");
+                    setMinQuantity(1);
+                    setMaxQuantity("");
                 }}>
                     Add
                 </button>
