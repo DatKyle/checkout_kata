@@ -37,6 +37,14 @@ function ViewProducts({ products }) {
 
 function EditProducts({ products }) {
     return <div className='edit products'>
+        <div className='row'>
+            <p>name</p>
+            <p>unit price</p>
+            <p>special quantity</p>
+            <p>special unit price</p>
+            <p>min quantity</p>
+            <p>max quantity</p>
+        </div>
         {
             products && products.length > 0 ?
                 products.map((product) => <EditProduct key={product.id} product={product} />)
