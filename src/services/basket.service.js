@@ -1,8 +1,8 @@
 import localforage from "localforage";
 import { get as getProduct } from "./products.service";
 
-function getItemDetails(item) {
-    const product = getProduct(item.id);
+async function getItemDetails(item) {
+    const product = await getProduct(item.id);
     return {
         id: product.id,
         name: product.name,
@@ -45,7 +45,7 @@ async function getLocalForge() {
 export async function getBasket() {
     let items = await getLocalForge();
 
-    return items.map(getItemDetails);
+    return items.map(async item => await getItemDetails(item));
 }
 
 export async function addItem(item) {
@@ -78,5 +78,5 @@ export function resetItems(){
 }
 
 export async function getDetails(items) {
-    return items.map(getItemDetails);
+    return Promise.all(items.map(async item => await getItemDetails(item)));
 }

@@ -1,4 +1,6 @@
-const products = [
+import localforage from "localforage";
+
+const defaultProducts = [
     {
         id: 1,
         name: "a",
@@ -37,10 +39,20 @@ const products = [
     }
 ]
 
-export function getAll() {
-    return products;
+function setLocalForge(items) {
+    return localforage.setItem("products", items);
 }
 
-export function get(id) {
+async function getLocalForge() {
+    const products = await localforage.getItem("products")
+    return products ? products : defaultProducts;
+}
+
+export async function getAll() {
+    return await getLocalForge();
+}
+
+export async function get(id) {
+    const products = await getLocalForge();
     return products.find(item => item.id === id);
 }

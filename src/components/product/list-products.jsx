@@ -3,25 +3,16 @@ import { useEffect, useState } from 'react';
 import { getAll } from '../../services/products.service';
 
 import { useBasket } from '../basket/basket.context';
+import { useProduct } from './product.context';
 
 import { Product } from './produst';
 
 export function ProductList() {
     const { basket } = useBasket()
-    const [products, setProducts] = useState([]);
+    const { products } = useProduct();
     const [editProducts, setEditProducts] = useState(false);
 
-    useEffect(() => {
-        const allProducts = getAll();
-
-        setProducts(allProducts);
-    }, []);
-
-    const basketIsEmpty = basket.length;
-
-    function toggelEditProducts() {
-        setEditProducts(!editProducts);
-    }
+    const basketIsEmpty = basket.length > 0;
 
     return (
         <>

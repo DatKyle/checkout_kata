@@ -1,14 +1,18 @@
-import { Basket } from "./components/basket/basket";
+import { ProductContextProvider } from "./components/product/product.context";
 import { BasketContextProvider } from "./components/basket/basket.context";
+
+import { Basket } from "./components/basket/basket";
 import { ProductList } from "./components/product/list-products";
 
 function App() {
   return (
     <>
-      <BasketContextProvider>
-        <ProductList />
-        <Basket />
-      </BasketContextProvider>
+      <ProductContextProvider>
+        <BasketContextProvider>
+          <ProductList />
+          <Basket />
+        </BasketContextProvider>
+      </ProductContextProvider>
     </>
   );
 }
