@@ -4,7 +4,7 @@ import { useProduct } from "../product.context";
 import "./edit-product.css"
 
 export function EditProduct({ product }) {
-    const { addProduct, updateProduct } = useProduct();
+    const { addProduct, updateProduct, removeProduct } = useProduct();
 
     const [name, setName] = useState(product ? product.name : "");
     const [unitPrice, setUnitPrice] = useState(product ? product.unitPrice : "");
@@ -73,7 +73,7 @@ export function EditProduct({ product }) {
                         }}>
                             Update
                         </button>
-                        <button onClick={() => { }}>
+                        <button onClick={() => removeProduct(product.id)}>
                             Remove
                         </button>
                     </>

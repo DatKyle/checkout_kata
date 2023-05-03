@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getAll, add, update } from "../../services/products.service";
+import { getAll, add, update, remove} from "../../services/products.service";
 import { produce } from "immer";
 
 const ProductContext = createContext({
@@ -37,8 +37,13 @@ export function ProductContextProvider({ children }) {
         }))
     };
 
+    function removeProduct(productId) {
+        remove(productId);
+        setProducts(products.filter(product => product.id !== productId))
+    };
+
     return (
-        <ProductContext.Provider value={{ products, addProduct, updateProduct }}>
+        <ProductContext.Provider value={{ products, addProduct, updateProduct, removeProduct }}>
             {children}
         </ProductContext.Provider>
     );

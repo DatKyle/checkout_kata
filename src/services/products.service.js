@@ -63,6 +63,12 @@ export async function update(updatedProduct) {
     return foundProduct;
 }
 
+export async function remove(id) {
+    const products = await getLocalForge();
+    setLocalForge(products.filter(product => product.id !== id));
+    return true;
+}
+
 export async function getAll() {
     return await getLocalForge();
 }
