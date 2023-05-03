@@ -72,6 +72,11 @@ export async function removeItem(id) {
     return true;
 }
 
+export function resetItems(){
+    localforage.removeItem("basket")
+    return true;
+}
+
 export async function getDetails(items) {
     return items.map(getItemDetails);
 }

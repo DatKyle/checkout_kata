@@ -5,14 +5,16 @@ import {
     getBasket,
     addItem as addBasketItem,
     updateItem as updateBasketItem,
-    removeItem as removeBasketItem
+    removeItem as removeBasketItem,
+    resetItems as resetBasketItems
 } from "../../services/basket.service";
 
 const BasketContext = createContext({
     basket: [],
     addItem: (item) => { },
     updateItem: (item) => { },
-    removeItem: (id) => { }
+    removeItem: (id) => { },
+    resetItems: () => { }
 });
 
 export function useBasket() {
@@ -49,8 +51,13 @@ export function BasketContextProvider({ children }) {
         setBasket(basket.filter(item => item.id !== id));
     };
 
+    function resetItems() {
+        resetBasketItems()
+        setBasket([]);
+    }
+
     return (
-        <BasketContext.Provider value={{ basket, addItem, updateItem, removeItem }}>
+        <BasketContext.Provider value={{ basket, addItem, updateItem, removeItem, resetItems }}>
             {children}
         </BasketContext.Provider>
     );
