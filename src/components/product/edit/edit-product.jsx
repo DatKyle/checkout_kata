@@ -4,13 +4,13 @@ import { useProduct } from "../product.context";
 import "./edit-product.css"
 
 export function EditProduct({ product }) {
-    const { addProduct } = useProduct();
+    const { addProduct, updateProduct } = useProduct();
 
     const [name, setName] = useState(product ? product.name : "");
     const [unitPrice, setUnitPrice] = useState(product ? product.unitPrice : "");
     const [specialQuantity, setSpecialQuantity] = useState(product && product.specialPrice ? product.specialPrice.quantity : "");
     const [specialUnitPrice, setSpecialUnitPrice] = useState(product && product.specialPrice ? product.specialPrice.unitPrice : "");
-    const [minQuantity, setMinQuantity] = useState(product && product.orderSize ? product.orderSize.min : "");
+    const [minQuantity, setMinQuantity] = useState(product && product.orderSize ? product.orderSize.min : 1);
     const [maxQuantity, setMaxQuantity] = useState(product && product.orderSize ? product.orderSize.max : "");
     return (
         <div className="row">
@@ -22,30 +22,61 @@ export function EditProduct({ product }) {
             <input name='maxQuantity' type='number' value={maxQuantity} onChange={e => setMaxQuantity(Number(e.target.value))} />
 
             <div>
-                <button onClick={() => {
-
-                    const hasSpecialPrice = specialQuantity && specialUnitPrice;
-                    const hasOrderSize = minQuantity && maxQuantity;
-
-                    addProduct({
-                        id: product ? product.id : null,
+                {!product ? (<button onClick={() => {
+                    let newProduct = {
                         name,
-                        unitPrice,
-                        specialPrice: hasSpecialPrice ? {
+                        unitPrice
+                    }
+
+                    if (specialQuantity && specialUnitPrice)
+                        newProduct.specialPrice = {
                             quantity: specialQuantity,
                             unitPrice: specialUnitPrice
-                        } : null,
-                        orderSize: hasOrderSize ? {
-                            min: minQuantity,
-                            max: maxQuantity
-                        } : null
-                    });
-                }}> {product ? "Update" : "Add"}</button>
+                        }
+
+                    if (minQuantity || maxQuantity)
+                        newProduct.orderSize = {
+                            min: minQuantity || null,
+                            max: maxQuantity || null
+                        }
+
+                    addProduct(newProduct);
+                }}>
+                    Add
+                </button>
+                )
+                    : null
+                }
 
                 {product ? (
-                    <button onClick={()=>{}}>
-                        Remove
-                    </button>
+                    <>
+                        <button onClick={() => {
+                            let updatedProduct = {
+                                id: product.id,
+                                name,
+                                unitPrice
+                            }
+
+                            if (specialQuantity && specialUnitPrice)
+                                updatedProduct.specialPrice = {
+                                    quantity: specialQuantity,
+                                    unitPrice: specialUnitPrice
+                                }
+
+                            if (minQuantity || maxQuantity)
+                                updatedProduct.orderSize = {
+                                    min: minQuantity || null,
+                                    max: maxQuantity || null
+                                }
+
+                            updateProduct(updatedProduct);
+                        }}>
+                            Update
+                        </button>
+                        <button onClick={() => { }}>
+                            Remove
+                        </button>
+                    </>
                 )
                     : null}
 

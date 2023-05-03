@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-
-import { getAll } from '../../services/products.service';
+import { useState } from 'react';
 
 import { useBasket } from '../basket/basket.context';
 import { useProduct } from './product.context';

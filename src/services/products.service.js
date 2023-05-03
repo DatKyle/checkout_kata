@@ -55,6 +55,14 @@ export async function add(product) {
     return product;
 }
 
+export async function update(updatedProduct) {
+    const products = await getLocalForge();
+    const foundProduct = products.find(product => product.id === updatedProduct.id);
+    Object.assign(foundProduct, updatedProduct);
+    setLocalForge(products);
+    return foundProduct;
+}
+
 export async function getAll() {
     return await getLocalForge();
 }

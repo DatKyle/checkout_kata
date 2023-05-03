@@ -1,11 +1,13 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-import { getAll, add } from "../../services/products.service";
+import { getAll, add, update } from "../../services/products.service";
 import { produce } from "immer";
 
 const ProductContext = createContext({
     products: [],
-    addProduct: (product) => { }
+    addProduct: (product) => { },
+    updateProduct: (product) => { },
+    removeProduct: (id) => { }
 });
 
 export function useProduct() {
@@ -27,8 +29,16 @@ export function ProductContextProvider({ children }) {
         }))
     };
 
+    function updateProduct(updatedProduct) {
+        update(updatedProduct);
+        setProducts(produce(draft => {
+            let foundProduct = draft.find(product => product.id === updatedProduct.id);
+            foundProduct = updatedProduct;
+        }))
+    };
+
     return (
-        <ProductContext.Provider value={{ products, addProduct }}>
+        <ProductContext.Provider value={{ products, addProduct, updateProduct }}>
             {children}
         </ProductContext.Provider>
     );
