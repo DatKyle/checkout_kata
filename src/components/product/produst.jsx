@@ -21,7 +21,7 @@ export function Product({ product }) {
 
     const [quantity, setQuantity] = useState(minQuantity);
 
-    const item = basket.find(item => item.id === product.id);
+    const item = basket.find(item => item.sku === product.sku);
 
     useEffect(() => {
         if (item)
@@ -36,24 +36,24 @@ export function Product({ product }) {
                 {product.specialPrice ? ` or ${product.specialPrice.quantity} @ ${product.specialPrice.unitPrice}` : null}
             </p>
             <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => { setQuantity(event.target.value) }} />
-            <ProductButtons id={product.id} quantity={parseInt(quantity)} />
+            <ProductButtons sku={product.sku} quantity={parseInt(quantity)} />
         </div>
     );
 }
 
-function ProductButtons({ id, quantity }) {
+function ProductButtons({ sku, quantity }) {
     const { basket, addItem, updateItem, removeItem } = useBasket();
-    if (basket.find(item => item.id === id))
+    if (basket.find(item => item.sku === sku))
         return (
             <>
                 <button onClick={() => {
-                    updateItem({ id, quantity });
+                    updateItem({ sku, quantity });
                 }}>
                     Update
                 </button>
 
                 <button onClick={() => {
-                    removeItem(id);
+                    removeItem(sku);
                 }}>
                     Remove
                 </button>
@@ -62,7 +62,7 @@ function ProductButtons({ id, quantity }) {
 
     return (
         <button onClick={() => {
-            addItem({ id, quantity });
+            addItem({ sku, quantity });
         }}> Add </button>
     );
 }

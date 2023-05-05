@@ -2,8 +2,8 @@ import localforage from "localforage";
 
 const defaultProducts = [
     {
-        id: 1,
-        name: "a",
+        sku: "a",
+        name: "apples",
         unitPrice: 50,
         specialPrice: {
             quantity: 3,
@@ -15,8 +15,8 @@ const defaultProducts = [
         }
     },
     {
-        id: 2,
-        name: "b",
+        sku: "b",
+        name: "bananas",
         unitPrice: 30,
         specialPrice: {
             quantity: 2,
@@ -28,13 +28,13 @@ const defaultProducts = [
         }
     },
     {
-        id: 3,
-        name: "c",
+        sku: "c",
+        name: "carrots",
         unitPrice: 20
     },
     {
-        id: 4,
-        name: "d",
+        sku: "d",
+        name: "dates",
         unitPrice: 15
     }
 ]
@@ -57,15 +57,15 @@ export async function add(product) {
 
 export async function update(updatedProduct) {
     const products = await getLocalForge();
-    const foundProduct = products.find(product => product.id === updatedProduct.id);
+    const foundProduct = products.find(product => product.sku === updatedProduct.sku);
     Object.assign(foundProduct, updatedProduct);
     setLocalForge(products);
     return foundProduct;
 }
 
-export async function remove(id) {
+export async function remove(sku) {
     const products = await getLocalForge();
-    setLocalForge(products.filter(product => product.id !== id));
+    setLocalForge(products.filter(product => product.sku !== sku));
     return true;
 }
 
@@ -73,7 +73,7 @@ export async function getAll() {
     return await getLocalForge();
 }
 
-export async function get(id) {
+export async function get(sku) {
     const products = await getLocalForge();
-    return products.find(item => item.id === id);
+    return products.find(item => item.sku === sku);
 }

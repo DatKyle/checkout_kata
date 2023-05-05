@@ -16,7 +16,7 @@ export function Basket() {
     return (
         <div>
             <div>
-                {basketDetails.map(item => <BasketItem key={item.id} item={item} />)}
+                {basketDetails.map(item => <BasketItem key={item.sku} item={item} />)}
             </div>
             <div>
                 <BasketTotal items={basketDetails} />
@@ -38,7 +38,7 @@ function BasketItem({ item }) {
         <div>
             <p>{item.name} - {item.quantity} - {item.totalPrice} {saving !== 0 ? `(${saving} saved)` : null}
                 <button onClick={() => {
-                    removeItem(item.id);
+                    removeItem(item.sku);
                 }}>
                     Remove
                 </button>

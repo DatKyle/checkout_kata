@@ -7,7 +7,7 @@ const ProductContext = createContext({
     products: [],
     addProduct: (product) => { },
     updateProduct: (product) => { },
-    removeProduct: (id) => { }
+    removeProduct: (sku) => { }
 });
 
 export function useProduct() {
@@ -22,7 +22,6 @@ export function ProductContextProvider({ children }) {
     }, []);
 
     function addProduct(product) {
-        product.id = products.length + 1;
         add(product);
         setProducts(produce(draft => {
             draft.push(product);
@@ -32,14 +31,14 @@ export function ProductContextProvider({ children }) {
     function updateProduct(updatedProduct) {
         update(updatedProduct);
         setProducts(produce(draft => {
-            let foundProduct = draft.find(product => product.id === updatedProduct.id);
+            let foundProduct = draft.find(product => product.sku === updatedProduct.sku);
             foundProduct = updatedProduct;
         }))
     };
 
-    function removeProduct(productId) {
-        remove(productId);
-        setProducts(products.filter(product => product.id !== productId))
+    function removeProduct(productSku) {
+        remove(productSku);
+        setProducts(products.filter(product => product.sku !== productSku))
     };
 
     return (

@@ -2,9 +2,9 @@ import localforage from "localforage";
 import { get as getProduct } from "./products.service";
 
 async function getItemDetails(item) {
-    const product = await getProduct(item.id);
+    const product = await getProduct(item.sku);
     return {
-        id: product.id,
+        sku: product.sku,
         name: product.name,
         quantity: item.quantity,
         unitPrice: product.unitPrice,
@@ -59,16 +59,16 @@ export async function addItem(item) {
 export async function updateItem(updatedItem) {
     const items = await getLocalForge()
     
-    const foundItem = items.find(storedItem => storedItem.id === updatedItem.id)
+    const foundItem = items.find(storedItem => storedItem.sku === updatedItem.sku)
     Object.assign(foundItem, updatedItem);
 
     setLocalForge(items);
     return foundItem;
 }
 
-export async function removeItem(id) {
+export async function removeItem(sku) {
     const items = await getLocalForge()
-    setLocalForge(items.filter(item => item.id !== id));
+    setLocalForge(items.filter(item => item.sku !== sku));
     return true;
 }
 

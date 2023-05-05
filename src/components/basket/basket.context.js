@@ -13,7 +13,7 @@ const BasketContext = createContext({
     basket: [],
     addItem: (item) => { },
     updateItem: (item) => { },
-    removeItem: (id) => { },
+    removeItem: (sku) => { },
     resetItems: () => { }
 });
 
@@ -29,11 +29,11 @@ export function BasketContextProvider({ children }) {
     }, []);
 
     function addItem(item) {
-        let foundItem = basket.find((product) => product.id === item.id);
+        let foundItem = basket.find((product) => product.sku === item.sku);
         if (!foundItem) {
             addBasketItem(item)
             setBasket(produce((draft) => {
-                draft.push({ id: item.id, quantity: item.quantity });
+                draft.push({ sku: item.sku, quantity: item.quantity });
             }));
         }
     };
@@ -41,14 +41,14 @@ export function BasketContextProvider({ children }) {
     function updateItem(item) {
         updateBasketItem(item);
         setBasket(produce((draft) => {
-            let foundItem = draft.find((product) => product.id === item.id);
+            let foundItem = draft.find((product) => product.sku === item.sku);
             foundItem.quantity = item.quantity
         }));
     };
 
-    function removeItem(id) {
-        removeBasketItem(id);
-        setBasket(basket.filter(item => item.id !== id));
+    function removeItem(sku) {
+        removeBasketItem(sku);
+        setBasket(basket.filter(item => item.sku !== sku));
     };
 
     function resetItems() {

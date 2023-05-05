@@ -31,7 +31,7 @@ export function ProductList() {
 
 function ViewProducts({ products }) {
     return products && products.length > 0 ?
-        products.map((product) => <Product key={product.id} product={product} />)
+        products.map((product) => <Product key={product.sku} product={product} />)
         : null
 }
 
@@ -47,7 +47,7 @@ function EditProducts({ products }) {
         </div>
         {
             products && products.length > 0 ?
-                products.map((product) => <EditProduct key={product.id} product={product} />)
+                products.map((product) => <EditProduct key={product.sku} product={product} />)
                 : null
         }
         <EditProduct product={null} />
