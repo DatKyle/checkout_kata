@@ -15,7 +15,7 @@ export function EditProduct({ product }) {
     const [maxQuantity, setMaxQuantity] = useState(product && product.orderSize ? product.orderSize.max || "" : "");
     return (
         <div className="row">
-            <input name='sku' type='text' value={sku} onChange={e => setSku(e.target.value)} />
+            <input name='sku' maxLength={2} type='text' value={sku} onChange={e => setSku(e.target.value)} />
             <input name='name' type='text' value={name} onChange={e => setName(e.target.value)} />
             <input name='unitPrice' type='number' value={unitPrice} onChange={e => setUnitPrice(Number(e.target.value))} />
             <input name='speicalQuantity' type='number' value={specialQuantity} onChange={e => setSpecialQuantity(Number(e.target.value))} />
@@ -45,6 +45,7 @@ export function EditProduct({ product }) {
 
                     addProduct(newProduct);
 
+                    setSku("");
                     setName("");
                     setUnitPrice("");
                     setSpecialQuantity("");
