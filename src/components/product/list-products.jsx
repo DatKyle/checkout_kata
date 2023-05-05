@@ -37,19 +37,25 @@ function ViewProducts({ products }) {
 
 function EditProducts({ products }) {
     return <div className='edit products'>
-        <div className='row'>
+        <div className='row header'>
+            <p>sku</p>
             <p>name</p>
             <p>unit price</p>
             <p>special quantity</p>
             <p>special unit price</p>
             <p>min quantity</p>
             <p>max quantity</p>
+            <p>actions</p>
         </div>
-        {
-            products && products.length > 0 ?
-                products.map((product) => <EditProduct key={product.sku} product={product} />)
-                : null
-        }
-        <EditProduct product={null} />
+        <div className="products">
+            {
+                products && products.length > 0 ?
+                    products.map((product) => <EditProduct key={product.sku} product={product} />)
+                    : null
+            }
+        </div>
+        <div className='add'>
+            <EditProduct product={null} />
+        </div>
     </div>
 }

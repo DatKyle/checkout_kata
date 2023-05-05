@@ -1,3 +1,4 @@
+import "./App.css";
 import { ProductContextProvider } from "./components/product/product.context";
 import { BasketContextProvider } from "./components/basket/basket.context";
 

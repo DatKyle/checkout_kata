@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useProduct } from "../product.context";
 
-import "./edit-product.css"
-
 export function EditProduct({ product }) {
     const { addProduct, updateProduct, removeProduct } = useProduct();
 
@@ -23,7 +21,7 @@ export function EditProduct({ product }) {
             <input name='minQuantity' type='number' value={minQuantity} onChange={e => setMinQuantity(Number(e.target.value))} />
             <input name='maxQuantity' type='number' value={maxQuantity} onChange={e => setMaxQuantity(Number(e.target.value))} />
 
-            <div>
+            <div className="actions">
                 {!product ? (<button onClick={() => {
                     let newProduct = {
                         sku,
