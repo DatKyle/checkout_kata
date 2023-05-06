@@ -11,11 +11,23 @@ export function Basket() {
     }, [basket]);
 
     if (basketDetails.length < 1)
-        return null;
+        return (
+            <div className="basket">
+                <div className="header">
+                    <h2>Basket</h2>
+                </div>
+                <div className="items empty">
+                    <p>Empty Basket</p>
+                </div>
+            </div>
+        );
 
     return (
-        <div>
-            <div>
+        <div className="basket">
+            <div className="header">
+                <h2>Basket</h2>
+            </div>
+            <div className="items">
                 {basketDetails.map(item => <BasketItem key={item.sku} item={item} />)}
             </div>
             <div>
@@ -35,14 +47,25 @@ function BasketItem({ item }) {
     const saving = item.totalBasicPrice - item.totalPrice;
 
     return (
-        <div>
-            <p>{item.name} - {item.quantity} - {item.totalPrice} {saving !== 0 ? `(${saving} saved)` : null}
+        <div className="item">
+            <div className="details">
+                <div className="name">
+                    <p className="sku">sku-{item.sku}</p>
+                    <span className="separator">-</span>
+                    <p className="name">{item.name}</p>
+                </div>
+                <div className="total">
+                    <p>Qty: {item.quantity}</p>
+                    <p>Total: {item.totalPrice}</p>
+                </div>
+            </div>
+            <div className="actions">
                 <button onClick={() => {
                     removeItem(item.sku);
                 }}>
                     Remove
                 </button>
-            </p>
+            </div>
         </div>
     );
 }

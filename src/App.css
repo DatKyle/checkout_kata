@@ -6,6 +6,10 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.main {
+  display: flex;
+}
+
 /* 
   Start of edit product styling
 */
@@ -77,11 +81,19 @@ body {
 
 .productList {
   width: 70vw;
+  
+  padding: 10px;
+
+  overflow: auto;
 }
 
 .productList .header {
   display: flex;
   align-items: center;
+}
+
+.productList .header h2 {
+  margin-top: 0px;
 }
 
 .productList .header .toggleEdit {
@@ -93,7 +105,6 @@ body {
   grid-template-columns: repeat(3, 1fr);
   column-gap: 10px;
   row-gap: 10px;
-  padding: 10px;
 }
 
 .productList .view.products .product {
@@ -131,4 +142,64 @@ body {
 
 /* 
   End of view product styling
+*/
+
+/* 
+  Start of view product styling
+*/
+
+.basket {
+  width: 30vw;
+  border-left: solid black 2px;
+  padding: 10px;
+  height: 100vh;
+}
+
+.basket .header h2 {
+  margin-top: 0px;
+}
+
+.basket .items .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  padding: 5px 0px;
+
+  border-bottom: solid 1px;
+}
+
+.basket .items .item .details {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  margin-right: 10px;
+}
+
+.basket .items .item p {
+  margin: 0px;
+}
+
+.basket .items .item .name {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.basket .items .item .name .separator{
+  margin: 0px 5px;
+}
+
+.basket .items .item .name .name{
+  text-transform: capitalize;
+}
+
+.basket .items .item .total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 
+  End of basket styling
 */

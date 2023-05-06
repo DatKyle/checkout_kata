@@ -10,8 +10,10 @@ function App() {
     <>
       <ProductContextProvider>
         <BasketContextProvider>
-          <ProductList />
-          <Basket />
+          <div className="main">
+            <ProductList />
+            <Basket />
+          </div>
         </BasketContextProvider>
       </ProductContextProvider>
     </>
