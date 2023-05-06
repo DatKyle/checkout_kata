@@ -30,10 +30,10 @@ export function Basket() {
             <div className="items">
                 {basketDetails.map(item => <BasketItem key={item.sku} item={item} />)}
             </div>
-            <div>
+            <div className="total">
                 <BasketTotal items={basketDetails} />
             </div>
-            <div>
+            <div className="actions">
                 <button onClick={() => alert("checkout")}> Checkout </button>
                 <button onClick={() => resetItems()}> Clear </button>
             </div>
@@ -43,9 +43,6 @@ export function Basket() {
 
 function BasketItem({ item }) {
     const { removeItem } = useBasket();
-
-    const saving = item.totalBasicPrice - item.totalPrice;
-
     return (
         <div className="item">
             <div className="details">
@@ -56,7 +53,7 @@ function BasketItem({ item }) {
                 </div>
                 <div className="total">
                     <p>Qty: {item.quantity}</p>
-                    <p>Total: {item.totalPrice}</p>
+                    <p>Total: {item.totalPrice}p</p>
                 </div>
             </div>
             <div className="actions">
@@ -82,6 +79,12 @@ function BasketTotal({ items }) {
     const saving = totalBasicPrice - totalPrice;
 
     return (
-        <p>Total: {totalPrice} {saving !== 0 ? `(${saving} saved)` : null}</p>
+        <>
+            <p className="price">Total: {totalPrice}p </p>
+            {saving !== 0 ?
+                <p className="savings">Saved: {saving}p </p>
+                : null
+            }
+        </>
     );
 }
