@@ -70,4 +70,64 @@ body {
 /* 
   End of edit product styling
 */
+
+/* 
+  Start of view product styling
+*/
+
+.productList {
+  width: 70vw;
 }
+
+.productList .header {
+  display: flex;
+  align-items: center;
+}
+
+.productList .header .toggleEdit {
+  margin-left: 20px;
+}
+
+.productList .view.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+  row-gap: 10px;
+  padding: 10px;
+}
+
+.productList .view.products .product {
+  display: grid;
+  grid-template-rows: 40px 42px 23px;
+
+  row-gap: 5px;
+  border: solid 1px black;
+  padding: 10px;
+}
+
+.productList .view.products .product .name,
+.productList .view.products .product .sku {
+  margin: 0px;
+}
+
+.productList .view.products .product .name {
+  text-transform: capitalize;
+}
+
+.productList .view.products .product .pricing .normal,
+.productList .view.products .product .pricing .special {
+  margin: 0px;
+}
+
+.productList .view.products .product .actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.productList .view.products .product .actions input{
+  width: 50px;
+}
+
+/* 
+  End of view product styling
+*/

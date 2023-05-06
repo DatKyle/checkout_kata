@@ -31,12 +31,28 @@ export function Product({ product }) {
     }, [item, minQuantity])
 
     return (
-        <div>
-            <p>{product.name} @ {product.unitPrice}
-                {product.specialPrice ? ` or ${product.specialPrice.quantity} @ ${product.specialPrice.unitPrice}` : null}
-            </p>
-            <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => { setQuantity(event.target.value) }} />
-            <ProductButtons sku={product.sku} quantity={parseInt(quantity)} />
+        <div className="product">
+            <div className="headers">
+                <h3 className="name">{product.name}</h3>
+                <pre className="sku">sku-{product.sku}</pre>
+            </div>
+            <div className="pricing">
+                <p className="normal">
+                    <span>normal: </span>
+                    {product.unitPrice}p
+                </p>
+                {product.specialPrice ?
+                    <p className="special">
+                        <span>special: </span>
+                        {product.specialPrice.quantity} for {product.specialPrice.unitPrice}p
+                    </p>
+                    : null
+                }
+            </div>
+            <div className="actions">
+                <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => { setQuantity(event.target.value) }} />
+                <ProductButtons sku={product.sku} quantity={parseInt(quantity)} />
+            </div>
         </div>
     );
 }
