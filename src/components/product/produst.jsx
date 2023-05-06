@@ -15,7 +15,7 @@ function getQuantityLimits(product) {
 }
 
 export function Product({ product }) {
-    const { basket } = useBasket();
+    const { basket, updateItem } = useBasket();
 
     const { minQuantity, maxQuantity } = getQuantityLimits(product);
 
@@ -50,7 +50,11 @@ export function Product({ product }) {
                 }
             </div>
             <div className="actions">
-                <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => { setQuantity(event.target.value) }} />
+                <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => {
+                    if (basket.find(item => item.sku === product.sku))
+                        updateItem({ sku: product.sku, quantity: parseInt(event.target.value) });
+                    setQuantity(event.target.value)
+                }} />
                 <ProductButtons sku={product.sku} quantity={parseInt(quantity)} />
             </div>
         </div>
@@ -58,16 +62,10 @@ export function Product({ product }) {
 }
 
 function ProductButtons({ sku, quantity }) {
-    const { basket, addItem, updateItem, removeItem } = useBasket();
+    const { basket, addItem, removeItem } = useBasket();
     if (basket.find(item => item.sku === sku))
         return (
             <>
-                <button onClick={() => {
-                    updateItem({ sku, quantity });
-                }}>
-                    Update
-                </button>
-
                 <button onClick={() => {
                     removeItem(sku);
                 }}>

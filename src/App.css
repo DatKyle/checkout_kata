@@ -120,8 +120,9 @@ body {
 }
 
 .productList .view.products .product .actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .productList .view.products .product .actions input{
