@@ -2,16 +2,34 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 
+  Start of edit product styling
+*/
+
 .edit.products {
   width: fit-content;
-  padding-left: 10px;
+
+  padding: 10px;
 }
 
 .edit.products .row {
   display: grid;
   grid-template-columns: 40px 110px 70px 70px 70px 70px 70px 130px;
   column-gap: 10px;
+
+  padding-bottom: 5px;
+
+  border-bottom: solid 1px black;
+
   margin-bottom: 5px;
+}
+
+.edit.products .row:last-child {
+  margin-bottom: 0px;
 }
 
 .edit.products .row.header {
@@ -19,6 +37,7 @@
   align-items: end;
 
   padding-bottom: 10px;
+
   border-bottom: solid 2px;
 
   margin-bottom: 10px;
@@ -27,6 +46,10 @@
 .edit.products .row p,
 .edit.products .row input {
   width: inherit;
+}
+
+.edit.products .row input {
+  border: solid black 1px;
 }
 
 .edit.products .row.header p {
@@ -39,6 +62,12 @@
   justify-content: space-between
 }
 
-.edit.products .add {
+.edit.products .add .row {
   padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/* 
+  End of edit product styling
+*/
 }
