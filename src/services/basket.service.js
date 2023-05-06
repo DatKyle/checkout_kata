@@ -45,7 +45,7 @@ async function getLocalForge() {
 export async function getBasket() {
     let items = await getLocalForge();
 
-    return items.map(async item => await getItemDetails(item));
+    return Promise.all(items.map(async item => await getItemDetails(item)));
 }
 
 export async function addItem(item) {
