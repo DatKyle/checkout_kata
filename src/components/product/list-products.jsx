@@ -18,7 +18,7 @@ export function ProductList() {
             <div className="header">
                 <h2>{editProducts ? "Edit" : ""} Products</h2>
                 {   /* edit product button */
-                    !basketIsEmpty ? <button className='toggleEdit' onClick={() => setEditProducts(!editProducts)}>
+                    !basketIsEmpty ? <button className='primary toggleEdit' onClick={() => setEditProducts(!editProducts)}>
                         {editProducts ? "Checkout" : "Edit Products"}
                     </button >
                         : null

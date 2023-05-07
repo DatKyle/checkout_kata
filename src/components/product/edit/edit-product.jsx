@@ -22,7 +22,7 @@ export function EditProduct({ product }) {
             <input name='maxQuantity' type='number' value={maxQuantity} onChange={e => setMaxQuantity(Number(e.target.value))} />
 
             <div className="actions">
-                {!product ? (<button onClick={() => {
+                {!product ? (<button className="primary" onClick={() => {
                     let newProduct = {
                         sku,
                         name,
@@ -59,7 +59,7 @@ export function EditProduct({ product }) {
 
                 {product ? (
                     <>
-                        <button onClick={() => {
+                        <button className="primary" onClick={() => {
                             let updatedProduct = {
                                 sku: product.sku,
                                 name,
@@ -82,7 +82,7 @@ export function EditProduct({ product }) {
                         }}>
                             Update
                         </button>
-                        <button onClick={() => removeProduct(product.sku)}>
+                        <button className="danger" onClick={() => removeProduct(product.sku)}>
                             Remove
                         </button>
                     </>

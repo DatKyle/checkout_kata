@@ -66,7 +66,7 @@ function ProductButtons({ sku, quantity }) {
     if (basket.find(item => item.sku === sku))
         return (
             <>
-                <button onClick={() => {
+                <button className="danger" onClick={() => {
                     removeItem(sku);
                 }}>
                     Remove
@@ -75,7 +75,7 @@ function ProductButtons({ sku, quantity }) {
         );
 
     return (
-        <button onClick={() => {
+        <button className="primary" onClick={() => {
             addItem({ sku, quantity });
         }}> Add </button>
     );

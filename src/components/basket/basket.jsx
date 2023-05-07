@@ -34,8 +34,8 @@ export function Basket() {
                 <BasketTotal items={basketDetails} />
             </div>
             <div className="actions">
-                <button onClick={() => alert("checkout")}> Checkout </button>
-                <button onClick={() => resetItems()}> Clear </button>
+                <button className="primary" onClick={() => alert("checkout")}> Checkout </button>
+                <button className="warning" onClick={() => resetItems()}> Clear </button>
             </div>
         </div>
     );
@@ -57,7 +57,8 @@ function BasketItem({ item }) {
                 </div>
             </div>
             <div className="actions">
-                <button onClick={() => {
+                <button className="danger"
+                onClick={() => {
                     removeItem(item.sku);
                 }}>
                     Remove
