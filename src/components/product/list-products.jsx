@@ -48,10 +48,15 @@ function EditProducts({ products }) {
             <p>sku</p>
             <p>name</p>
             <p>unit price</p>
-            <p>special quantity</p>
+            <p>special Qty</p>
             <p>special unit price</p>
-            <p>min quantity</p>
-            <p>max quantity</p>
+            <div className='quantity'>
+                <p>Quantity</p>
+                <div className='columns'>
+                    <p>min</p>
+                    <p>max</p>
+                </div>
+            </div>
             <p>actions</p>
         </div>
         <div className="products">

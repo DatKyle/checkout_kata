@@ -22,7 +22,7 @@ body {
 
 .edit.products .row {
   display: grid;
-  grid-template-columns: 40px 110px 70px 70px 70px 70px 70px 130px;
+  grid-template-columns: 30px 70px 40px 50px 70px 40px 40px 170px;
   column-gap: 10px;
 
   padding-bottom: 5px;
@@ -52,9 +52,19 @@ body {
   width: inherit;
 }
 
+.edit.products .row.header .quantity,
 .edit.products .row.header p {
   margin: 0px;
   padding: 0px;
+}
+
+.edit.products .row.header .quantity .columns{
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit.products .row.header .quantity{
+  grid-column: 6/8;
 }
 
 .edit.products .row .actions {
