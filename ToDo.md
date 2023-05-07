@@ -30,9 +30,8 @@ The solution should allow for items to input within a simple user interface, and
 1. ~~Ability to add products to a basket~~
 1. ~~Display the total price of the basket~~
 1. ~~Items with mulit-pricing should use the best price for the quanitity~~
-1. Allow users to change the pricing before creating the basket
+1. ~~Allow users to change the pricing before creating the basket~~
 
 ## If we have time:
-- Beutyfiy the UI
-- Create items to add to basket
+- ~~Beutyfiy the UI~~
 - Add the ability to support multiple multi-pricing
