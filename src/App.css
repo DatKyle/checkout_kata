@@ -52,10 +52,6 @@ body {
   width: inherit;
 }
 
-.edit.products .row input {
-  border: solid black 1px;
-}
-
 .edit.products .row.header p {
   margin: 0px;
   padding: 0px;
@@ -267,3 +263,24 @@ button.warning {
 /* 
   End of button styling
 */
+
+/* 
+  Start of input styling
+*/
+
+input {
+  border: solid grey 1px;
+  border-radius: 0.25rem;
+  padding: 5px 5px;
+}
+
+input.no-border {
+  border: none;
+  background-color: #6c757d;
+  color: white;
+}
+
+/* 
+  End of input styling
+*/
+
