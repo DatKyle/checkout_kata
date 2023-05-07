@@ -58,12 +58,12 @@ body {
   padding: 0px;
 }
 
-.edit.products .row.header .quantity .columns{
+.edit.products .row.header .quantity .columns {
   display: flex;
   justify-content: space-around;
 }
 
-.edit.products .row.header .quantity{
+.edit.products .row.header .quantity {
   grid-column: 6/8;
 }
 
@@ -215,7 +215,7 @@ body {
   justify-content: space-between;
 }
 
-.basket > .total {
+.basket>.total {
   padding: 10px 0px;
 }
 
@@ -294,3 +294,142 @@ input.no-border {
   End of input styling
 */
 
+/* 
+  Start of modal styling
+*/
+
+.modal {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding-top: 100px;
+
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.modal .content {
+  background-color: white;
+  padding: 20px;
+}
+
+.modal .content.checkout {
+  width: 500px;
+}
+
+.modal .content .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal .content .header .title {
+  margin: 0;
+  padding: 0;
+}
+
+.modal .content .header .close {
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.modal .content .basket.items,
+.modal .content .basket.total,
+.modal .content .basket.actions {
+  width: auto;
+  height: auto;
+
+  padding: 0px;
+  border: none;
+}
+
+.modal .content .basket.items .header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr;
+  margin: 0;
+  padding: 0;
+  border-bottom: solid 1px;
+}
+
+.modal .content .basket.items .header p {
+
+  padding: 5px 0px;
+
+  border-right: solid 1px;
+
+  margin: 0;
+
+  text-align: center;
+}
+
+.modal .content .basket.items .header p:last-child {
+  border-right: none;
+}
+
+.modal .content .basket.items .item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr;
+}
+
+.modal .content .basket.items .item p {
+  text-align: center;
+  border-right: solid 1px;
+  margin: 0;
+  padding: 5px 0px;
+}
+
+.modal .content .basket.items .item p:last-child {
+  border-right: none;
+}
+
+.modal .content .basket.total {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr;
+
+  padding: 5px 0px;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  margin: 0;
+}
+
+.modal .content .basket.total p,
+.modal .content .basket.total .total,
+.modal .content .basket.total .price,
+.modal .content .basket.total .saved{
+  padding: 0;
+  margin: 0;
+}
+
+.modal .content .basket.total .total {
+  grid-column: 1;
+  text-align: center;
+}
+
+.modal .content .basket.total .price {
+  grid-column: 3/4;
+  text-align: center;
+}
+
+.modal .content .basket.total .saved {
+  grid-column: 4;
+  text-align: center;
+}
+
+.modal .content .basket.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: 20px;
+}
+
+/* 
+  End of modal styling
+*/

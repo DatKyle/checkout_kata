@@ -3,7 +3,7 @@ import { useBasket } from "./basket.context";
 import { getDetails as getBasketDetails } from "../../services/basket.service";
 
 export function Basket() {
-    const { basket, resetItems } = useBasket();
+    const { basket, resetItems, checkoutBasket } = useBasket();
     const [basketDetails, setBasketDetails] = useState([]);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ export function Basket() {
                 <BasketTotal items={basketDetails} />
             </div>
             <div className="actions">
-                <button className="primary" onClick={() => alert("checkout")}> Checkout </button>
+                <button className="primary" onClick={() => checkoutBasket()}> Checkout </button>
                 <button className="warning" onClick={() => resetItems()}> Clear </button>
             </div>
         </div>

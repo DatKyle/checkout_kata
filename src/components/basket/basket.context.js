@@ -8,13 +8,16 @@ import {
     removeItem as removeBasketItem,
     resetItems as resetBasketItems
 } from "../../services/basket.service";
+import { CheckoutModal } from "./checkout-modal";
 
 const BasketContext = createContext({
     basket: [],
     addItem: (item) => { },
     updateItem: (item) => { },
     removeItem: (sku) => { },
-    resetItems: () => { }
+    resetItems: () => { },
+    checkoutBasket: () => {},
+    editBasket: () => {}
 });
 
 export function useBasket() {
@@ -23,6 +26,7 @@ export function useBasket() {
 
 export function BasketContextProvider({ children }) {
     const [basket, setBasket] = useState([]);
+    const [checkout, setcheckout] = useState(false);
 
     useEffect(() => {
         getBasket().then(storedBasket => setBasket(storedBasket))
@@ -54,10 +58,20 @@ export function BasketContextProvider({ children }) {
     function resetItems() {
         resetBasketItems()
         setBasket([]);
+        setcheckout(false);
+    }
+
+    function checkoutBasket() {
+        setcheckout(true);
+    }
+    
+    function editBasket() {
+        setcheckout(false);
     }
 
     return (
-        <BasketContext.Provider value={{ basket, addItem, updateItem, removeItem, resetItems }}>
+        <BasketContext.Provider value={{ basket, addItem, updateItem, removeItem, resetItems, checkoutBasket, editBasket }}>
+            {checkout ? <CheckoutModal /> : null}
             {children}
         </BasketContext.Provider>
     );
