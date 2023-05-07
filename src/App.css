@@ -90,10 +90,11 @@ body {
 .productList .header {
   display: flex;
   align-items: center;
+  margin-bottom: 19px;
 }
 
 .productList .header h2 {
-  margin-top: 0px;
+  margin: 0px;
 }
 
 .productList .header .toggleEdit {
@@ -155,8 +156,12 @@ body {
   height: 100vh;
 }
 
+.basket .header {
+  margin-bottom: 19px;
+}
+
 .basket .header h2 {
-  margin-top: 0px;
+  margin: 0px;
 }
 
 .basket .items .item {
