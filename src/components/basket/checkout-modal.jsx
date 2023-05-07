@@ -29,7 +29,7 @@ export function CheckoutModal() {
                     {basketDetails.map(item => <BasketItem key={item.sku} item={item} />)}
                 </div>
                 <div className="basket total">
-                    <BasketTotal items={basket} />
+                    <BasketTotal items={basketDetails} />
                 </div>
                 <div className="basket actions">
                     <button className="success" onClick={() => resetItems()}>
