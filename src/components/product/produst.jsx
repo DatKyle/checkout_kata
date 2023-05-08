@@ -51,17 +51,23 @@ export function Product({ product }) {
             </div>
             <div className="actions">
                 <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => {
-                    if (basket.find(item => item.sku === product.sku))
-                        updateItem({ sku: product.sku, quantity: parseInt(event.target.value) });
+                    if (basket.find(item => item.sku === product.sku)) {
+                        let quantity = parseInt(event.target.value) || minQuantity;
+                        if (quantity < minQuantity)
+                            quantity = minQuantity
+                        else if (quantity > maxQuantity)
+                            quantity = maxQuantity
+                        updateItem({ sku: product.sku, quantity: quantity });
+                    }
                     setQuantity(event.target.value)
                 }} />
-                <ProductButtons sku={product.sku} quantity={parseInt(quantity)} />
+                <ProductButtons sku={product.sku} quantity={parseInt(quantity)} minQuantity={minQuantity} maxQuantity={maxQuantity} />
             </div>
         </div>
     );
 }
 
-function ProductButtons({ sku, quantity }) {
+function ProductButtons({ sku, quantity, minQuantity, maxQuantity }) {
     const { basket, addItem, removeItem } = useBasket();
     if (basket.find(item => item.sku === sku))
         return (
@@ -76,6 +82,11 @@ function ProductButtons({ sku, quantity }) {
 
     return (
         <button className="primary" onClick={() => {
+            quantity = quantity || minQuantity;
+            if (quantity < minQuantity)
+                quantity = minQuantity
+            else if (quantity > maxQuantity)
+                quantity = maxQuantity
             addItem({ sku, quantity });
         }}> Add </button>
     );
