@@ -52,15 +52,15 @@ function BasketItem({ item }) {
                     <p className="name">{item.name}</p>
                 </div>
                 <div className="total">
-                    <p>Qty: {item.quantity}</p>
-                    <p>Total: {item.totalPrice}p</p>
+                    <p className="quantity">Qty: {item.quantity}</p>
+                    <p className="cost">Total: {item.totalPrice}p</p>
                 </div>
             </div>
             <div className="actions">
                 <button className="danger"
-                onClick={() => {
-                    removeItem(item.sku);
-                }}>
+                    onClick={() => {
+                        removeItem(item.sku);
+                    }}>
                     Remove
                 </button>
             </div>

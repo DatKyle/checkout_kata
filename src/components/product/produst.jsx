@@ -50,7 +50,7 @@ export function Product({ product }) {
                 }
             </div>
             <div className="actions">
-                <input type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => {
+                <input name={`${product.sku}-qty`} type='number' value={quantity} min={minQuantity} max={maxQuantity} onChange={(event) => {
                     if (basket.find(item => item.sku === product.sku)) {
                         let quantity = parseInt(event.target.value) || minQuantity;
                         if (quantity < minQuantity)
